@@ -18,5 +18,10 @@
         "cif": "00081200",
         "username": "STGJO",
         "password": "Welcome@2026"
+    },
+       "verifier": {
+        "cif": "00081200",
+        "username": "admin",
+        "password": "Welcome@2026"
     }
 }
