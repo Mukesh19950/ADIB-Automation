@@ -10,4 +10,12 @@ export class uiActions {
         await locator.fill(text);
     }
 
+    async selectByValue(locator: Locator, value: string): Promise<void> {
+        await locator.selectOption(value);
+    }
+
+    async pressSequentially(locator: Locator, text: string, delay: number = 0): Promise<void> {
+        await locator.pressSequentially(text, {delay});
+    }
+
 }

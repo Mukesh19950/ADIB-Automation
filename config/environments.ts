@@ -1,7 +1,7 @@
 export const environments = {
 
     sit: {
-        baseUrl: "https://stgbusiness.bankofjordan.com/iportalweb/",
+        baseUrl: "http://ldevp1apcmg001.adib.co.ae:9095/iportalweb/",
     },
 
     uat: {

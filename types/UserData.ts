@@ -1,12 +1,11 @@
 export interface UserCredential {
-    cif: string;
     username: string;
     password: string;
+    question: string;
+    answer: string;
 }
 
 export interface UserData {
     maker: UserCredential;
     checker: UserCredential;
-    admin: UserCredential;
-    invaliduser: UserCredential;
 }

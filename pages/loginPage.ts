@@ -8,20 +8,28 @@ export class LoginPage extends BasePage {
         super(page, context);
     }
 
-    private get corporateIdInput() {
-        return this.page.getByPlaceholder(/Enter your Corporate ID/);
-    }
-
-    private get usernameInput() {
+    private get userIdInput() {
         return this.page.getByPlaceholder(/Enter your User ID/);
     }
 
-    private get passwordInput() {
-        return this.page.getByPlaceholder(/Enter your Password/);
+    private get proceed() {
+        return this.page.locator("a.proceed");
     }
 
-    private get submitButton() {
-        return this.page.locator("a.Actionbtn.submit.next");
+    private get passwordInput() {
+        return this.page.getByPlaceholder(/Enter your password/);
+    }
+
+    private get secQuestion() {
+        return this.page.locator("//select[@id='securityQus0']");
+    }
+
+    private get enterAnswer() {
+        return this.page.getByPlaceholder(/Enter your answer/);
+    }
+
+    private get submitLogin() {
+        return this.page.locator("a.submit");
     }
 
     async navigate(): Promise<void> {
@@ -31,12 +39,16 @@ export class LoginPage extends BasePage {
         this.page = newPage;
     }
 
-    async login(custid: string, userid: string, password: string,) {
+    async login(userid: string, password: string, secQuestion: string, enterAnswer: string) {
 
-        await this.uiActions.fill(this.corporateIdInput, custid);
-        await this.uiActions.fill(this.usernameInput, userid);
-        await this.uiActions.fill(this.passwordInput, password);
-        await this.uiActions.click(this.submitButton);
+        await this.uiActions.pressSequentially(this.userIdInput, userid, 250);
+        await this.uiActions.click(this.proceed);
+        await this.uiActions.pressSequentially(this.passwordInput, password, 250);
+        await this.uiActions.selectByValue(this.secQuestion, secQuestion);
+        await this.uiActions.pressSequentially(this.enterAnswer, enterAnswer, 250);
+        await this.uiActions.click(this.submitLogin);
+
+
     }
 
 }

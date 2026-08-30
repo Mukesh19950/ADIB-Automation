@@ -3,12 +3,14 @@ import { BrowserFactory } from '../core/browserFactory';
 import { LoginPage } from '../pages/loginPage';
 import { UserData } from '../types/UserData';
 import { TestDataReader } from '../utils/TestDataReader';
+import { WaitActions } from '../wrapper/waitActions';
 
 interface CustomFixtures {
     context: BrowserContext;
     page: Page;
     loginPage: LoginPage;
     users: UserData;
+    waitActions: WaitActions;
 
 }
 
@@ -35,6 +37,10 @@ export const test = base.extend<CustomFixtures>({
     users : async ({}, use) => {
         const users =  TestDataReader.getusers();
         await use(users);
-    }
+    },
+    
+    waitActions: async ({ page, context }, use) => {
+        await use(new WaitActions(page, context));
+    },
 
 });
