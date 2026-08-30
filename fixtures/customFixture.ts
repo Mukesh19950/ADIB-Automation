@@ -4,6 +4,7 @@ import { LoginPage } from '../pages/loginPage';
 import { UserData } from '../types/UserData';
 import { TestDataReader } from '../utils/TestDataReader';
 import { WaitActions } from '../wrapper/waitActions';
+import { ExpectUtil } from '../utils/expectUtils';
 
 interface CustomFixtures {
     context: BrowserContext;
