@@ -4,7 +4,7 @@ import { LoginPage } from '../pages/loginPage';
 import { UserData } from '../types/UserData';
 import { TestDataReader } from '../utils/TestDataReader';
 import { WaitActions } from '../wrapper/waitActions';
-import { ExpectUtil } from '../utils/expectUtils';
+import { OwnAccount } from '../pages/ownAccountTransfer';
 
 interface CustomFixtures {
     context: BrowserContext;
@@ -12,6 +12,7 @@ interface CustomFixtures {
     loginPage: LoginPage;
     users: UserData;
     waitActions: WaitActions;
+    ownAccount : OwnAccount;
 
 }
 
@@ -43,5 +44,9 @@ export const test = base.extend<CustomFixtures>({
     waitActions: async ({ page, context }, use) => {
         await use(new WaitActions(page, context));
     },
+
+     ownAccount: async ({ page, context }, use) => {
+        await use(new OwnAccount(page, context));
+    }, 
 
 });

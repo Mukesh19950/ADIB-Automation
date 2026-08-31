@@ -1,4 +1,4 @@
-import { BrowserContext, Page } from '@playwright/test';
+import { BrowserContext, Locator, Page } from '@playwright/test';
 import { BasePage } from '../core/basePage';
 import { ConfigManager } from '../config/configManager';
 
@@ -32,8 +32,8 @@ export class LoginPage extends BasePage {
         return this.page.locator("a.submit");
     }
 
-    private get paymentContainer(){
-        return this.page.locator("//label[text()='Consolidated Balance']");
+    private get dashLabel(): Locator{
+        return this.page.locator("//li[@id='wsContainer__PYMNTS']");
     }
 
     async navigate(): Promise<void> {
@@ -51,7 +51,7 @@ export class LoginPage extends BasePage {
         await this.uiActions.selectByValue(this.secQuestion, secQuestion);
         await this.uiActions.pressSequentially(this.enterAnswer, enterAnswer, 250);
         await this.uiActions.click(this.submitLogin);
-        await this.expectUtils.expectToBeVisible(this.paymentContainer);
+        await this.expectUtils.expectToBeVisible(this.dashLabel);
         
     
 
