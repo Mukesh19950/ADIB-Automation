@@ -10,6 +10,7 @@ export class BasePage {
     protected  waitActions: WaitActions;
     protected  context: BrowserContext;
     protected  expectUtils: ExpectUtil;
+   
 
     
     constructor(page: Page, context: BrowserContext) {
@@ -18,6 +19,7 @@ export class BasePage {
         this.expectUtils = new ExpectUtil();
         this.context = context;
         this.waitActions = new WaitActions(page, context);
+
        
     }
 

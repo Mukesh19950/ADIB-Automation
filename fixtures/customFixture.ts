@@ -4,7 +4,6 @@ import { LoginPage } from '../pages/loginPage';
 import { UserData } from '../types/UserData';
 import { TestDataReader } from '../utils/TestDataReader';
 import { WaitActions } from '../wrapper/waitActions';
-import { OwnAccount } from '../pages/ownAccountTransfer';
 
 interface CustomFixtures {
     context: BrowserContext;
@@ -12,7 +11,6 @@ interface CustomFixtures {
     loginPage: LoginPage;
     users: UserData;
     waitActions: WaitActions;
-    ownAccount : OwnAccount;
 
 }
 
@@ -23,6 +21,7 @@ export const test = base.extend<CustomFixtures>({
         const context = await BrowserFactory.createContext(browser);
         await use(context);
         await context.close();
+        await browser.close();
     },
 
     page: async ({ context }, use) => {
@@ -36,17 +35,13 @@ export const test = base.extend<CustomFixtures>({
         await use(new LoginPage(page, context));
     },
 
-    users : async ({}, use) => {
-        const users =  TestDataReader.getusers();
+    users: async ({ }, use) => {
+        const users = TestDataReader.getusers();
         await use(users);
     },
-    
+
     waitActions: async ({ page, context }, use) => {
         await use(new WaitActions(page, context));
     },
-
-     ownAccount: async ({ page, context }, use) => {
-        await use(new OwnAccount(page, context));
-    }, 
 
 });

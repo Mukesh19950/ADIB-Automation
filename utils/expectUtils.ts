@@ -7,8 +7,8 @@ export class ExpectUtil {
         await expect(locator).toBeVisible({ timeout: TIMEOUT.assertion });
     }
 
-    static async expectToHaveText(page: Page, selector: string, text: string): Promise<void> {
-        await expect(page.locator(selector)).toHaveText(text, { timeout: 10000 });
+    async expectToHaveText(locator: Locator, text: string): Promise<void> {
+        await expect(locator).toHaveText(text, { timeout: TIMEOUT.assertion });
     }
 
     static async expectToBeEnabled(page: Page, selector: string): Promise<void> {
