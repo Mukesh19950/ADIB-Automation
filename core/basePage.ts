@@ -11,16 +11,21 @@ export class BasePage {
     protected  context: BrowserContext;
     protected  expectUtils: ExpectUtil;
    
-
-    
     constructor(page: Page, context: BrowserContext) {
         this.page = page;
         this.uiActions = new uiActions();
         this.expectUtils = new ExpectUtil();
         this.context = context;
         this.waitActions = new WaitActions(page, context);
-
-       
     }
+
+     public getPage(): Page {
+        return this.page;
+    }
+
+    public setPage(page: Page): void {
+        this.page = page;
+    }
+
 
 }

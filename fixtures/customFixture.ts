@@ -4,11 +4,13 @@ import { LoginPage } from '../pages/loginPage';
 import { UserData } from '../types/UserData';
 import { TestDataReader } from '../utils/TestDataReader';
 import { WaitActions } from '../wrapper/waitActions';
+import { DashboardPage } from '../pages/dashboardPage';
 
 interface CustomFixtures {
     context: BrowserContext;
     page: Page;
     loginPage: LoginPage;
+    dashboardPage: DashboardPage;
     users: UserData;
     waitActions: WaitActions;
 
@@ -35,6 +37,10 @@ export const test = base.extend<CustomFixtures>({
         await use(new LoginPage(page, context));
     },
 
+    dashboardPage: async ({ loginPage, context }, use) => {
+        await use(new DashboardPage(loginPage, context));
+    },
+
     users: async ({ }, use) => {
         const users = TestDataReader.getusers();
         await use(users);
@@ -43,5 +49,7 @@ export const test = base.extend<CustomFixtures>({
     waitActions: async ({ page, context }, use) => {
         await use(new WaitActions(page, context));
     },
+
+
 
 });

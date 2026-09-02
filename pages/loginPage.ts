@@ -32,10 +32,6 @@ export class LoginPage extends BasePage {
         return this.page.locator("a.submit");
     }
 
-    private get dashLabel(): Locator{
-        return this.page.locator("//label[text()='Consolidated Balance']");
-    }
-
     async navigate(): Promise<void> {
         const newPagePromise = this.waitActions.waitForNewPage();
         await this.page.goto(ConfigManager.getBaseUrl());
@@ -52,7 +48,6 @@ export class LoginPage extends BasePage {
         await this.uiActions.selectByValue(this.secQuestion, secQuestion);
         await this.uiActions.pressSequentially(this.enterAnswer, enterAnswer, 250);
         await this.uiActions.click(this.submitLogin);
-        await this.expectUtils.expectToHaveText(this.dashLabel, "Consolidated Balance");
     }
 
 }
