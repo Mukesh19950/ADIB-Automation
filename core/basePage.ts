@@ -1,7 +1,7 @@
 import { BrowserContext, Page } from '@playwright/test';
 import { uiActions } from '../actions/uiActions';
-import { ConfigManager } from '../config/configManager';
 import { WaitActions } from '../wrapper/waitActions';
+import { ExpectUtil } from '../utils/expectUtils';
 
 export class BasePage {
 
@@ -9,14 +9,23 @@ export class BasePage {
     protected  uiActions: uiActions;
     protected  waitActions: WaitActions;
     protected  context: BrowserContext;
-    
+    protected  expectUtils: ExpectUtil;
+   
     constructor(page: Page, context: BrowserContext) {
         this.page = page;
         this.uiActions = new uiActions();
+        this.expectUtils = new ExpectUtil();
         this.context = context;
         this.waitActions = new WaitActions(page, context);
-       
-
     }
+
+     public getPage(): Page {
+        return this.page;
+    }
+
+    public setPage(page: Page): void {
+        this.page = page;
+    }
+
 
 }

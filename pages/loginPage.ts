@@ -1,4 +1,4 @@
-import { BrowserContext, Page } from '@playwright/test';
+import { BrowserContext, Locator, Page } from '@playwright/test';
 import { BasePage } from '../core/basePage';
 import { ConfigManager } from '../config/configManager';
 
@@ -36,6 +36,7 @@ export class LoginPage extends BasePage {
         const newPagePromise = this.waitActions.waitForNewPage();
         await this.page.goto(ConfigManager.getBaseUrl());
         const newPage = await newPagePromise;
+        await newPage.waitForLoadState("domcontentloaded");
         this.page = newPage;
     }
 
@@ -47,8 +48,6 @@ export class LoginPage extends BasePage {
         await this.uiActions.selectByValue(this.secQuestion, secQuestion);
         await this.uiActions.pressSequentially(this.enterAnswer, enterAnswer, 250);
         await this.uiActions.click(this.submitLogin);
-
-
     }
 
 }

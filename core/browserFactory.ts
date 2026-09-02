@@ -4,7 +4,6 @@ import { ConfigManager } from '../config/configManager';
 export class BrowserFactory {
 
   static async createBrowser(): Promise<Browser> {
-    //return await chromium.launch({ headless: false }); 
 
     const browser = ConfigManager.getBrowser();
 
